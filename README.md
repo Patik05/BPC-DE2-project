@@ -35,6 +35,8 @@ Measure distance at a steady interval and show the result and a visual near/far 
 | 3V3  | All devices | 3.3 V power supply. |
 | GND  | All devices | Common ground. |
 
+### Block diagram
+
 ```mermaid
 flowchart LR
     USB[USB 5 V] --> PICO[Raspberry Pi Pico WH]
@@ -45,6 +47,10 @@ flowchart LR
     PICO -- "GP13" --> BUZ[HW-5108 Buzzer]
 ```
 <br>
+
+### Wiring diagram
+
+![circuit_diagram_image](images/wiring_diagram.png)
 
 
 ## How to run
