@@ -13,7 +13,7 @@ Project for the bachelor subject Digital Electronics 2, 2026 <br>
 Modern real-world vehicles (like cars) use sensors in order to detect a possible obstacle in the cars way and warn the driver of a possible colision. But not all situations are ideal and ultrasound sensors can have problems with detection.
 
 ##  Main objective/problem
-This project it to measure distance at a steady interval and show the result and a visual near/far indication via danger bar. When the distance gets too small then a buzzer makes a noise. Also, we implement a barometer that decreases the ultrasound sensor the accuracy by an increased temperature.
+This project measures distance at a steady interval and shows the result via visual near/far indication danger bar on the OLED display. When the distance gets too small then a buzzer makes a noise. Also, the project implements a barometer that decreases the ultrasound sensor accuracy when temperature increases.
 
 
 ## Circuit diagram/schematics
@@ -52,10 +52,27 @@ flowchart LR
 - First, it is required to have the latest Micropython extension be donwloaded. Either the use of code editors like VSCode or Thonny will do.
 - Connect the board to the computer via USB and then use the donwloaded Micropython extension to connect the board the code editor.
 - Import the libraries on the board
-- Run the [main.py]() with the Micropython extension (not F5, but instead the "Run" command on the bottom of the editor)
+- Run the [main.py](src/main.py) with the Micropython extension (not F5, but instead the "Run" command on the bottom of the editor)
 Not sure which libraries? All of the libraries included in this repository is enough.
 
+## Used software
+Code runs on Micropython 1.29.0
+Used python files:
+#### main.py
 
+The function serves to run the main part of the program, using all the project libraries. It defines the time periods used, pins used and how the program should behave.
+
+#### bme280.py
+
+[Imported library](https://randomnerdtutorials.com/micropython-bme280-esp32-esp8266/). It defines the readings on the BME/BMP280 module and helps us get the current temperature.
+
+#### hcsr04.py
+
+[Imported library](https://github.com/rsc1975/micropython-hcsr04). It utilizes the HCSR04 ultrasound sensor and allows to measure distance in either mm or cm, depending on the function used. 
+
+#### sh1106.py
+
+[Imported library](https://github.com/tomas-fryza/esp-micropython/blob/main/modules/sh1106.py) Simplifies the usage of the OLED SSD1306 display. 
 
 ## Used hardware
 The code runs on the <b>Raspberry Pi Pico WH © 2022</b>.
@@ -103,7 +120,7 @@ Small module with four pins. In our project, when temperature increases on it, t
 ## Used tools
 - Github: Documentation, repository home.
 - VSCode: Home edits for the repository.
-- circuito.io: Circuit diagram
+- [cirkitdesigner](app.cirkitdesigner.com): Circuit diagram
 
 ## References
 1. Micropython. [Micropython official site](https://micropython.org/)
