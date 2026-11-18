@@ -23,12 +23,27 @@ Measure distance at a steady interval and show the result and a visual near/far 
 
 ## Circuit diagram/schematics
 
+| Pin | Device | Description  |
+| :--: | :---- |  :----------- |
+| GP2  | HY-SRF05 Ultrasound sensor | Trig pin. Starts the measurement. |
+| GP3  | HY-SRF05 Ultrasound sensor | Echo pin. Returns the measured signal. |
+| GP4  | OLED Display | SDA pin, I2C0. Address 0x3C. |
+| GP5  | OLED Display | SCL pin, I2C0. Address 0x3C. |
+| GP13 | HW-5108 Buzzer | Signal pin for the buzzer. |
+| GP26 | BMP280 Barometric pressure sensor | SDA pin, I2C1. Address 0x76. |
+| GP27 | BMP280 Barometric pressure sensor | SCL pin, I2C1. Address 0x76. |
+| 3V3  | All devices | 3.3 V power supply. |
+| GND  | All devices | Common ground. |
 
-   | Pin | Device | Description  |
-   | :--: | :---- |  :----------- |
-   | 1   | TODO    | TODO        |
-
-![circuit_diagram_image]()
+```mermaid
+flowchart LR
+    USB[USB 5 V] --> PICO[Raspberry Pi Pico WH]
+    PICO -- "Trig (GP2)" --> US[HY-SRF05<br>Ultrasound sensor]
+    US -- "Echo (GP3)" --> PICO
+    BMP[BMP280<br>Barometric pressure sensor] -- "I2C1 (GP26/GP27)" --> PICO
+    PICO -- "I2C0 (GP4/GP5)" --> OLED[OLED Display]
+    PICO -- "GP13" --> BUZ[HW-5108 Buzzer]
+```
 <br>
 
 
