@@ -61,22 +61,26 @@ Not sure which libraries? All of the libraries included in this repository is en
 The code runs on the <b>Raspberry Pi Pico WH © 2022</b>.
 ![raspberry_pico](images/PICO-WH-2022.webp)
 <i>The board in question.</i>
+
 It is the main brain that holds the project together. The board itself can supply all the components with the required voltage and pins. 
 <br>
 
 ![HY-SRF05_Ultrasound_sensor](images/ultrasound.png)
 <i>HY-SRF05 Ultrasound sensor</i>
+
 A cheap ultrasound sensor that comes with most microcontroller/microprocessor kits. Its selling point is it ease of use and the cheap price. However, the sensor itself has limted range that in theory works from 2 cm to 400 cm. The longer the range, the less accurate it may be, but for our application it does the job fine.
 <br>
 
 
 ![SSD1306_OLED_Display](images/OLED_disp.webp)
 <i>SSD1306 OLED Display</i>
+
 Small OLED display with 4 pins. Again, easy to use. Its easybility of use is also well documented in [doc. Tomas's repository](https://gitlab.fekt.vut.cz/fryza/micropython-course-labs/-/tree/main/lab6-serial?ref_type=heads). The main disadvantage of this module is its small screen. Therefore it does not give us too much room to put information on it.
 <br>
 
 ![HW-5108](images/buzzer3.3.avif)
 <i>HW-5108 Buzzer</i>
+
 Classical buzzer. Our version has three pins and only two were used. It has supply from 3.3V power source and buzzes noise within our hearing range. For our purposes, it work just well.
 <br>
 
