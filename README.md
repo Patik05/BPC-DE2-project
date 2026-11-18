@@ -103,7 +103,7 @@ Small module with four pins. In our project, when temperature increases on it, t
 ## Used tools
 - Github: Documentation, repository home.
 - VSCode: Home edits for the repository.
-- Wokwi: Circuit diagram
+- circuito.io: Circuit diagram
 
 ## References
 1. Micropython. [Micropython official site](https://micropython.org/)
