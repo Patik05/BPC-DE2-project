@@ -2,10 +2,6 @@
 Project for the bachelor subject Digital Electronics 2, 2026 <br>
 
 
-Setup and operating instructions, including required MicroPython modules.
-Hardware inventory and any assumptions or limitations.
-
-
 ## Team members and the work
 | Name | Responsibility |
 | :--- | :------------- |
@@ -14,11 +10,10 @@ Hardware inventory and any assumptions or limitations.
 | [Samuel Adamec](https://github.com/afflorld) | Responsible for the code, circuit diagram. |
 
 ## The problem
-Real-world appliances or vehicles (like cars) use sensors in order to detect a possible item in the nearby vicinity. The sensor gets used to help detect a possible collision with an object in time, so that said object can be avoided. But not all situations are ideal and ultrasound sensors can have problems with detection. So we use a barometer to simulate such cases.
-
+Modern real-world vehicles (like cars) use sensors in order to detect a possible obstacle in the cars way and warn the driver of a possible colision. But not all situations are ideal and ultrasound sensors can have problems with detection.
 
 ##  Main objective/problem
-Measure distance at a steady interval and show the result and a visual near/far indication via danger bar. When the distance gets too small, a buzzer makes a noise. Also, usage of the barometric pressure sensor that decreases the accuracy of the ultrasound sensor.
+This project it to measure distance at a steady interval and show the result and a visual near/far indication via danger bar. When the distance gets too small then a buzzer makes a noise. Also, we implement a barometer that decreases the ultrasound sensor the accuracy by an increased temperature.
 
 
 ## Circuit diagram/schematics
@@ -86,10 +81,11 @@ Classical buzzer. Our version has three pins and only two were used. It has supp
 <br>
 
 ![BMP280](images/barometric_pressure_sensor.png)
-<i>BMP280 Baromteric pressure sensor</i>
-Small module with four pins. In our project, when temperature increases on it, the ultrasound inaccuracy increases.
-<br>
 
+<i>BMP280 Baromteric pressure sensor</i>
+
+Small module with four pins. In our project, when temperature increases on it, the ultrasound sensor inaccuracy increases.
+<br>
 
 
 ## Poster
