@@ -74,6 +74,35 @@ The function serves to run the main part of the program, using all the project l
 
 [Imported library](https://github.com/tomas-fryza/esp-micropython/blob/main/modules/sh1106.py) Simplifies the usage of the OLED SSD1306 display. 
 
+#### Built-in MicroPython modules
+
+No external packages need to be installed, only the modules built into MicroPython (v1.29.0) are used besides the files from the `src` folder:
+
+| Module | Used in | Purpose |
+| :----- | :------ | :------ |
+| `machine` (`Pin`, `I2C`, `PWM`, `time_pulse_us`) | main.py, hcsr04.py, sh1106.py | GPIO, I2C buses, PWM for the RGB LED, echo pulse length measurement. |
+| `time` / `utime` | main.py, bme280.py, hcsr04.py, sh1106.py | Timing (`ticks_ms`, `ticks_diff`, `ticks_add`, `sleep_ms`, `sleep_us`). |
+| `framebuf` | sh1106.py | Frame buffer for drawing text and shapes on the OLED. |
+
+Version of the bundled library: `hcsr04.py` 0.2.1.
+
+### Timing
+
+All time constants are defined at the top of [main.py](src/main.py). The main loop runs every `LOOP_MS` and each task is executed using non-blocking `time.ticks_ms()` comparison.
+
+| Constant | Value | Description |
+| :------- | :---: | :---------- |
+| `LOOP_MS` | 10 ms | Main loop step, which is also the buzzer timing resolution. |
+| `MEAS_PERIOD_MS` | 100 ms | Distance measurement interval (10 Hz), also refreshes the OLED display and RGB LED. |
+| `TEMP_PERIOD_MS` | 2000 ms | Temperature read interval of the BMP/BME280 sensor (used to correct the speed of sound). |
+| `HOLD_MS` | 500 ms | The last valid distance is kept during short echo dropouts. |
+| `BEEP_FAST_MS` | 50 ms | Buzzer on/off time at `NEAR_CM` (10 cm) or closer. |
+| `BEEP_SLOW_MS` | 500 ms | Buzzer on/off time at `FAR_CM` (100 cm). In between the time changes linearly; farther than `FAR_CM` the buzzer is silent. |
+| `echo_timeout_us` | 30000 us | Echo timeout of the HC-SR04 sensor (30 ms, approx. 5 m); no echo means out of range. |
+| I2C0 (OLED) | 400 kHz | Bus frequency of the display. |
+| I2C1 (BMP280) | 100 kHz | Bus frequency of the temperature sensor. |
+| RGB LED PWM | 1 kHz | PWM frequency of the LED channels. |
+
 ## Used hardware
 The code runs on the <b>Raspberry Pi Pico WH © 2022</b>.
 
