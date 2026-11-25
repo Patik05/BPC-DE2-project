@@ -55,31 +55,21 @@ Each component was tested on its own with a short script before it was connected
 
 The script scans the I2C1 bus to check that the sensor is at address `0x76`, then reads the temperature and pressure five times, once per second, and prints them.
 
-<br>
-
 ### HY-SRF05 Ultrasound sensor ([test_ultrasound.py](tests/test_ultrasound.py))
 
 The script measures the distance ten times, every 0.5 s, and prints it in cm while a hand moves in front of the sensor.
-
-<br>
 
 ### OLED Display ([test_oled.py](tests/test_oled.py))
 
 The script scans the I2C0 bus to check that the display is at address `0x3C`, then writes "OLED test OK" on the screen.
 
-<br>
-
 ### HW-5108 Buzzer ([test_buzzer.py](tests/test_buzzer.py))
 
 The script switches the buzzer pin (GP13) on and off five times, 0.2 s on and 0.2 s off.
 
-<br>
-
 ### RGB LED ([test_rgb_led.py](tests/test_rgb_led.py))
 
 The script turns on the red (GP14), green (GP15) and blue (GP16) channel one after another, each for one second.
-
-<br>
 
 ## How to run
 - First, it is required to have the latest Micropython extension be donwloaded. Either the use of code editors like VSCode or Thonny will do.
