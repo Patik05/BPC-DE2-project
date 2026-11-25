@@ -124,7 +124,7 @@ A cheap ultrasound sensor that comes with most microcontroller/microprocessor ki
 <img src="images/OLED_disp.webp " alt="SSD1306_OLED_Display" width="200"/>
 <i>SSD1306 OLED Display</i>
 
-Small OLED display with 4 pins. Again, easy to use. Its easybility of use is also well documented in [doc. Tomas's repository](https://gitlab.fekt.vut.cz/fryza/micropython-course-labs/-/tree/main/lab6-serial?ref_type=heads). The main disadvantage of this module is its small screen. Therefore it does not give us too much room to put information on it.
+Small OLED display with 4 pins. Again, easy to use. Its easibility of use is also well documented in [doc. Tomas's repository](https://gitlab.fekt.vut.cz/fryza/micropython-course-labs/-/tree/main/lab6-serial?ref_type=heads). The main disadvantage of this module is its small screen. Therefore it does not give us too much room to put information on it.
 <br>
 
 
@@ -136,9 +136,9 @@ Classical buzzer. Our version has three pins and only two were used. It has supp
 
 <img src="images/barometric_pressure_sensor.png" alt="BMP/BME280" width="200"/>
 
-<i>BMP/BME280 Baromteric pressure sensor</i>
+<i>BMP/BME280 Barometric pressure sensor</i>
 
-Small module with four pins. In our project, when temperature changes, the ultrasound sensor inaccuracy fluctuates, BMP/BME280 compensates this error.
+Small module with four pins, connected over I2C. The speed of sound changes with air temperature, so the program reads the temperature from this sensor and uses it to calculate the current speed of sound. This makes the distance measured by the ultrasound sensor more accurate.
 <br>
 
 
