@@ -13,7 +13,7 @@ Project for the bachelor subject Digital Electronics 2, 2026 <br>
 Modern real-world vehicles (like cars) use sensors in order to detect a possible obstacle in the cars way and warn the driver of a possible colision. But not all situations are ideal and ultrasound sensors can have problems with detection.
 
 ##  Main objective/problem
-This project measures distance at a steady interval and shows the result via visual near/far indication danger bar on the OLED display. When the distance gets too small then a buzzer makes a noise. Also, the project implements a barometer that decreases the ultrasound sensor accuracy when temperature increases.
+This project measures distance at a steady interval and shows the result via visual near/far indication danger bar on the OLED display. When the distance gets too small then a buzzer makes a noise. Also, the project implements a barometer that increases the ultrasound sensor accuracy when temperature changes.
 
 
 ## Circuit diagram/schematics
@@ -25,8 +25,8 @@ This project measures distance at a steady interval and shows the result via vis
 | GP4  | OLED Display | SDA pin, I2C0. Address 0x3C. |
 | GP5  | OLED Display | SCL pin, I2C0. Address 0x3C. |
 | GP13 | HW-5108 Buzzer | Signal pin for the buzzer. |
-| GP26 | BMP280 Barometric pressure sensor | SDA pin, I2C1. Address 0x76. |
-| GP27 | BMP280 Barometric pressure sensor | SCL pin, I2C1. Address 0x76. |
+| GP26 | BMP/BME280 Barometric pressure sensor | SDA pin, I2C1. Address 0x76. |
+| GP27 | BMP/BME280 Barometric pressure sensor | SCL pin, I2C1. Address 0x76. |
 | 3V3  | All devices | 3.3 V power supply. |
 | GND  | All devices | Common ground. |
 
@@ -37,7 +37,7 @@ flowchart LR
     USB[USB 5 V] --> PICO[Raspberry Pi Pico WH]
     PICO -- "Trig (GP2)" --> US[HY-SRF05<br>Ultrasound sensor]
     US -- "Echo (GP3)" --> PICO
-    BMP[BMP280<br>Barometric pressure sensor] -- "I2C1 (GP26/GP27)" --> PICO
+    BMP/BME[BMP/BME280<br>Barometric pressure sensor] -- "I2C1 (GP26/GP27)" --> PICO
     PICO -- "I2C0 (GP4/GP5)" --> OLED[OLED Display]
     PICO -- "GP13" --> BUZ[HW-5108 Buzzer]
 ```
@@ -64,7 +64,7 @@ The function serves to run the main part of the program, using all the project l
 
 #### bme280.py
 
-[Imported library](https://randomnerdtutorials.com/micropython-bme280-esp32-esp8266/). It defines the readings on the BME/BMP280 module and helps us get the current temperature.
+[Imported library](https://randomnerdtutorials.com/micropython-bme280-esp32-esp8266/). It defines the readings on the BME/BMP/BME280 module and helps us get the current temperature.
 
 #### hcsr04.py
 
@@ -94,13 +94,13 @@ All time constants are defined at the top of [main.py](src/main.py). The main lo
 | :------- | :---: | :---------- |
 | `LOOP_MS` | 10 ms | Main loop step, which is also the buzzer timing resolution. |
 | `MEAS_PERIOD_MS` | 100 ms | Distance measurement interval (10 Hz), also refreshes the OLED display and RGB LED. |
-| `TEMP_PERIOD_MS` | 2000 ms | Temperature read interval of the BMP/BME280 sensor (used to correct the speed of sound). |
+| `TEMP_PERIOD_MS` | 2000 ms | Temperature read interval of the BMP/BME/BME280 sensor (used to correct the speed of sound). |
 | `HOLD_MS` | 500 ms | The last valid distance is kept during short echo dropouts. |
 | `BEEP_FAST_MS` | 50 ms | Buzzer on/off time at `NEAR_CM` (10 cm) or closer. |
 | `BEEP_SLOW_MS` | 500 ms | Buzzer on/off time at `FAR_CM` (100 cm). In between the time changes linearly; farther than `FAR_CM` the buzzer is silent. |
 | `echo_timeout_us` | 30000 us | Echo timeout of the HC-SR04 sensor (30 ms, approx. 5 m); no echo means out of range. |
 | I2C0 (OLED) | 400 kHz | Bus frequency of the display. |
-| I2C1 (BMP280) | 100 kHz | Bus frequency of the temperature sensor. |
+| I2C1 (BMP/BME280) | 100 kHz | Bus frequency of the temperature sensor. |
 | RGB LED PWM | 1 kHz | PWM frequency of the LED channels. |
 
 ## Used hardware
@@ -134,11 +134,11 @@ Small OLED display with 4 pins. Again, easy to use. Its easybility of use is als
 Classical buzzer. Our version has three pins and only two were used. It has supply from 3.3V power source and buzzes noise within our hearing range. For our purposes, it work just well.
 <br>
 
-<img src="images/barometric_pressure_sensor.png" alt="BMP280" width="200"/>
+<img src="images/barometric_pressure_sensor.png" alt="BMP/BME280" width="200"/>
 
-<i>BMP280 Baromteric pressure sensor</i>
+<i>BMP/BME280 Baromteric pressure sensor</i>
 
-Small module with four pins. In our project, when temperature increases on it, the ultrasound sensor inaccuracy increases.
+Small module with four pins. In our project, when temperature changes, the ultrasound sensor inaccuracy fluctuates, BMP/BME280 compensates this error.
 <br>
 
 
@@ -153,8 +153,7 @@ Extra visual danger indicator, that turns red when the distance of the sensor an
 <i>Pre-prepared part, thus not yet implemented</i>
 
 ## Showcase video
-[Showcase video]()<br>
-<i>Pre-prepared part, thus not yet implemented</i>
+[Showcase video](https://youtube.com/shorts/WLNbI5G10A0?feature=share)<br>
 
 ## Used tools
 - Github: Documentation, repository home.
