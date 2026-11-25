@@ -51,23 +51,23 @@ flowchart LR
 
 Each component was tested on its own with a short script before it was connected to the main program.
 
-### BMP/BME280 Barometric pressure sensor ([test_bme280.py](tests/test_bme280.py))
+### BMP/BME280 Barometric pressure sensor ([bmpbme280_test.py](tests/bmpbme280_test.py))
 
 The script scans the I2C1 bus to check that the sensor is at address `0x76`, then reads the temperature and pressure five times, once per second, and prints them.
 
-### HY-SRF05 Ultrasound sensor ([test_ultrasound.py](tests/test_ultrasound.py))
+### HY-SRF05 Ultrasound sensor ([hcsr04_test.py](tests/hcsr04_test.py))
 
 The script measures the distance ten times, every 0.5 s, and prints it in cm while a hand moves in front of the sensor.
 
-### OLED Display ([test_oled.py](tests/test_oled.py))
+### OLED Display ([sh1106_test.py](tests/sh1106_test.py))
 
 The script scans the I2C0 bus to check that the display is at address `0x3C`, then writes "OLED test OK" on the screen.
 
-### HW-5108 Buzzer ([test_buzzer.py](tests/test_buzzer.py))
+### HW-5108 Buzzer ([buzzer_test.py](tests/buzzer_test.py))
 
 The script switches the buzzer pin (GP13) on and off five times, 0.2 s on and 0.2 s off.
 
-### RGB LED ([test_rgb_led.py](tests/test_rgb_led.py))
+### RGB LED ([rgb_led_test.py](tests/led_test.py))
 
 The script turns on the red (GP14), green (GP15) and blue (GP16) channel one after another, each for one second.
 
